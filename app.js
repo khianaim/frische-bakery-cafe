@@ -80,7 +80,7 @@ const viewBakeryBtn = document.getElementById('viewBakery');
 // Redirect logic without fade
 function navigateTo(page) {
   if (!window.location.pathname.includes(page)) {
-    window.location.href = page;  // immediate redirect
+    window.location.href = page;  
   }
 }
 
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mobile logic for seeMore → triggers contactIcon
   if (window.innerWidth <= 440 && seeMore) {
     seeMore.addEventListener("click", function () {
-      contactIcon?.click(); // Simulate click on #contactIcon
+      contactIcon?.click(); 
     });
   }
 
@@ -144,25 +144,25 @@ document.addEventListener("keydown", (event) => {
    // If user presses UP arrow key
   if (event.key === "ArrowUp") {
     const prevBtn = document.getElementById("prev");
-    if (prevBtn) prevBtn.click(); // simulate a click
+    if (prevBtn) prevBtn.click(); 
   }
 
   // If user presses DOWN arrow key
   if (event.key === "ArrowDown") {
     const prevBtn = document.getElementById("next");
-    if (prevBtn) prevBtn.click(); // simulate a click
+    if (prevBtn) prevBtn.click();
   }
 
   // If user presses LEFT arrow key
   if (event.key === "ArrowLeft") {
     const prevBtn = document.getElementById("prev");
-    if (prevBtn) prevBtn.click(); // simulate a click
+    if (prevBtn) prevBtn.click(); 
   }
 
   // If user presses RIGHT arrow key
   if (event.key === "ArrowRight") {
     const nextBtn = document.getElementById("next");
-    if (nextBtn) nextBtn.click(); // simulate a click
+    if (nextBtn) nextBtn.click(); 
   }
 });
 
@@ -181,15 +181,14 @@ document.addEventListener("touchstart", function (e) {
 document.addEventListener("touchend", function (e) {
   touchEndX = e.changedTouches[0].screenX;
   touchEndY = e.changedTouches[0].screenY;
-  handleSwipeGesture();
-}, false);
 
-function handleSwipeGesture() {
   const deltaX = touchEndX - touchStartX;
   const deltaY = touchEndY - touchStartY;
 
   if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    // Horizontal swipe
+    // Horizontal swipe only
+    e.preventDefault(); 
+
     if (deltaX > 50) {
       // Swipe Right
       document.getElementById("prev")?.click();
@@ -197,14 +196,6 @@ function handleSwipeGesture() {
       // Swipe Left
       document.getElementById("next")?.click();
     }
-  } else {
-    // Vertical swipe
-    if (deltaY > 50) {
-      // Swipe Down
-      document.getElementById("next")?.click();
-    } else if (deltaY < -50) {
-      // Swipe Up
-      document.getElementById("prev")?.click();
-    }
   }
-}
+}, { passive: false }); 
+
