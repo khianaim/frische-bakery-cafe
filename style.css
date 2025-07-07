@@ -940,36 +940,45 @@ header .logo {
   display: none;
   }
 
-  @media (max-width: 440px) {
-  /* Align both elements properly */
-  .nav-toggle, .toggle-button {
+  /* Parent toggle container */
+  .nav-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 72%;  /* Ensure they both have the same width */
-    font-size: 1rem;  /* Adjust font size */
+    gap: 10px;
+    width: fit-content;
+    padding: 4px; /* Smaller padding to avoid height stacking */
+    margin: 0 auto;
   }
 
-  /* Adjust button padding for mobile */
+  /* Toggle buttons */
   .toggle-button {
-    padding: 12px 20px;  /* Adjust padding to fit smaller screens */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 30px;
+    width: 100px; /* fixed width to keep both the same */
+    height: 40px;  /* ensures same height */
+    box-sizing: border-box;
   }
 
-  /* Optional: If needed, you can also adjust margins */
-  .nav-toggle {
-    margin: 0 auto;  /* Optional, for centering */
+  .toggle-button.active {
+    background: #fff;
+    color: #ff0000;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   }
-}
 
-  /* Hide original text */
+  /* Hide original button text */
   #viewCafe,
   #viewBakery {
     font-size: 0;
-    padding: 22px 30px;
-    border-radius: 30px;
+    padding: 0;
   }
 
-  /* Add new short label via ::before */
+  /* Add short labels via pseudo-elements */
   #viewCafe::before {
     content: 'Bakery';
     font-size: 1rem;
@@ -980,9 +989,10 @@ header .logo {
     font-size: 1rem;
   }
 
+  /* Hide 'see more' on mobile */
   .carousel .list .item .introduce .seeMore {
-  display: none;
-}
+    display: none;
+  }
 }
 
 /* Modal overlay */
